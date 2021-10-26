@@ -38,6 +38,7 @@ export const Table = () => {
 
     })
 
+
     return (
         <>
             <TopAlert message={`Page will update in ${myState.count} seconds!`} />

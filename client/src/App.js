@@ -9,6 +9,9 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import { Login } from './components/Login';
+import { SignUp } from './components/SignUp';
+import { Footer } from './components/Footer';
 
 function App() {
   return (
@@ -26,11 +29,21 @@ function App() {
               <Alerts />
             </Route>
 
-          </Switch>
+            <Route exact path="/login">
+              <Login/>
+            </Route>
 
+            <Route exact path="/signup">
+              <SignUp/>
+            </Route>
+
+          </Switch>
+          <Footer/>
         </div>
+       
       </Router>
     </AlertState>
+    
   );
 }
 

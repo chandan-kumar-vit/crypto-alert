@@ -4,10 +4,14 @@ import alertContext from '../context/alertContext'
 export const AlertItem = (props) => {
 
     const context = useContext(alertContext);
-    const {deleteAlert}=context;
+    const {deleteAlert, updateAlert}=context;
 
     const handleOnClick=()=>{
         deleteAlert(props._id);
+    }
+
+    const handleOnClickUpdate=()=>{
+        updateAlert(props._id);
     }
 
     return (
@@ -24,7 +28,7 @@ export const AlertItem = (props) => {
                     <label className="card-text">Current Rate: ₹ {props.curr_price}</label><br />
                 </div>
                 <div className="container">
-                    <i className="fas fa-edit" ></i>
+                    <i className="fas fa-edit" onClick={handleOnClickUpdate}></i>
                     <i className="fas fa-trash mx-3" onClick={handleOnClick}></i>
                 </div>
 

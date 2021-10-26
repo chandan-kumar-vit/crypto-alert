@@ -23,7 +23,7 @@ const AlertState = (props) => {
       credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE2YzAyODE1Zjk3NjkwNTljNGZlMzc0In0sImlhdCI6MTYzNDQ3ODc2NX0.Uly2wA9vYRymwRHFftnJROl41J_s22E5UpFLntxBWDg'
+        'auth-token': localStorage.getItem('token')
       }
     });
     const temp = await response.json();
@@ -43,7 +43,7 @@ const AlertState = (props) => {
       credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE2YzAyODE1Zjk3NjkwNTljNGZlMzc0In0sImlhdCI6MTYzNDQ3ODc2NX0.Uly2wA9vYRymwRHFftnJROl41J_s22E5UpFLntxBWDg'
+        'auth-token': localStorage.getItem('token')
       },
       redirect: 'follow',
       referrerPolicy: 'no-referrer',
@@ -60,14 +60,14 @@ const AlertState = (props) => {
     // API call
     let url = `${host}/api/alerts/deletealert/${id}`;
 
-    const response = await fetch(url, {
+    await fetch(url, {
       method: 'DELETE',
       mode: 'cors',
       cache: 'no-cache',
       credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE2YzAyODE1Zjk3NjkwNTljNGZlMzc0In0sImlhdCI6MTYzNDQ3ODc2NX0.Uly2wA9vYRymwRHFftnJROl41J_s22E5UpFLntxBWDg'
+        'auth-token': localStorage.getItem('token')
       }
     });
 
@@ -90,14 +90,15 @@ const AlertState = (props) => {
       credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE2YzAyODE1Zjk3NjkwNTljNGZlMzc0In0sImlhdCI6MTYzNDQ3ODc2NX0.Uly2wA9vYRymwRHFftnJROl41J_s22E5UpFLntxBWDg'
+        'auth-token': localStorage.getItem('token')
       },
       redirect: 'follow',
       referrerPolicy: 'no-referrer',
       body: JSON.stringify({ crypto, minAmt, maxAmt })
     });
     //console.log(response.json());
-    
+    const json=await(response.json());
+    console.log(json)
 
     for (let index = 0; index < alerts.length; index++) {
       const element = alerts[index];
