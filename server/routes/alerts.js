@@ -8,7 +8,7 @@ const { body, validationResult } = require('express-validator');
 // ROUTE 1: Get All the Alerts using: GET "/api/alerts/fetchallalerts". Login required
 router.get('/fetchallalerts', fetchuser, async (req, res) => {
     try {
-        const alerts = await Alert.find({ user: req.user.id });
+        const alerts = await Alert.find({ user: req.user.id, status:"active"});
         res.json(alerts)
     } catch (error) {
         console.error(error.message);
