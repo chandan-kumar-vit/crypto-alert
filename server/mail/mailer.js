@@ -1,6 +1,7 @@
 const Alert = require('../models/Alert');
 const { fetchPrices } = require('./fetchPrices');
 const nodemailer = require('nodemailer');
+require('dotenv').config()
 
 var transporter = nodemailer.createTransport({
 
@@ -9,8 +10,8 @@ var transporter = nodemailer.createTransport({
     service: 'yahoo',
     secure: false,
     auth: {
-        user: 'thechandankumar@yahoo.com',
-        pass: 'xnrumdicjwgdmriw'
+        user: process.env.EMAIL_USERNAME,
+        pass: process.env.EMAIL_PASS
     },
     debug: false,
     logger: true
@@ -49,7 +50,7 @@ const sendMail = async () => {
 
             if ((result[i].minAmt < found[0].current_price) && (found[0].current_price < result[i].maxAmt)) {
                 var mailOptions = {
-                    from: 'thechandankumar@yahoo.com',
+                    from: process.env.EMAIL_USERNAME,
                     to: result[i].user_info.email,
                     subject: `Alert! ${result[i].crypto} has hit your target!`,
                     html: `<h2> Crypto-Tracker </h2> <br> Hi ${result[i].user_info.name}, <br>
